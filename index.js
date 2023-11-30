@@ -31,44 +31,32 @@ const tweets = [
   }
 ]
 
-// Récupération dans le HTML de l'élément parent (ici ul avec la classe 'tweets-list')
 const tweetsList = document.getElementById('tweets-list');
-// Récupération du premier tweet (premier élément du tableau 'tweets')
-const firstTweet = tweets[0];
+
+// Mise en place d'une boucle forEach sur le tableau tweets
+// tweet représente l'objet parcouru dans le tableau par la boucle
+tweets.forEach(tweet => {
+  const liTweet = document.createElement('li');
+  liTweet.classList.add('tweet');
+
+  const pContent = document.createElement('p');
+  pContent.classList.add('content');
+  // firstTweet.content -> tweet.content ('content' de l'objet parcouru)
+  pContent.textContent = 'Contenu du tweet : ' + tweet.content;
+
+  const pLikes = document.createElement('p');
+  pLikes.classList.add('likes');
+  // firstTweet.likes -> tweet.likes ('likes' de l'objet parcouru)
+  pLikes.textContent = 'Nombre de likes : ' + tweet.likes;
 
 
-// Création du template
-// Création de la balise li, et on lui ajoute la classe 'tweet'
-const liTweet = document.createElement('li');
-liTweet.classList.add('tweet');
+  const pAuthor = document.createElement('p');
+  pAuthor.classList.add('author');
+  // firstTweet.author -> tweet.author ('author' de l'objet parcouru)
+  pAuthor.textContent = 'Auteur : ' + tweet.author;
 
-
-// Création de la balise p, et on lui ajoute la classe 'content'
-const pContent = document.createElement('p');
-pContent.classList.add('content');
-// Contenu de la balise à afficher
-pContent.textContent = 'Contenu du tweet : ' + firstTweet.content;
-
-
-// Création de la balise p, et on lui ajoute la classe 'likes'
-const pLikes = document.createElement('p');
-pLikes.classList.add('likes');
-// Contenu de la balise à afficher
-pLikes.textContent = 'Nombre de likes : ' + firstTweet.likes;
-
-
-// Création de la balise p, et on lui ajoute la classe 'author'
-const pAuthor = document.createElement('p');
-pAuthor.classList.add('author');
-// Contenu de la balise à afficher
-pAuthor.textContent = 'Auteur : ' + firstTweet.author;
-
-
-// Ajout des 3 éléments enfants dans leur élément parent (Content + likes + author -> tweet)
-liTweet.appendChild(pContent);
-liTweet.appendChild(pLikes);
-liTweet.appendChild(pAuthor);
-
-// Ajout de liTweet à son parent -> tweets-list défini directement dans le HTML
-tweetsList.appendChild(liTweet);
-
+  liTweet.appendChild(pContent);
+  liTweet.appendChild(pLikes);
+  liTweet.appendChild(pAuthor);
+  tweetsList.appendChild(liTweet);
+});
